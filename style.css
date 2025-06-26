@@ -1,0 +1,451 @@
+/* Responsive style.css for Toko Nanda */
+
+/* =============== Root & Resets =============== */
+:root {
+  --primary-color: #4a90e2;
+  --primary-hover: #357ab8;
+  --bg-card: #fff;
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 0.5rem;
+  --spacing: 1rem;
+  --text-dark: #222;
+  --text-medium: #555;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  /* jangan gunakan height:100% yang mengunci tinggi halaman */
+  min-height: 100vh;
+  /* biarkan konten lebih panjang bisa scroll vertikal */
+  overflow-y: auto;
+  /* tetap hilangkan overflow horisontal */
+  overflow-x: hidden;
+
+  /* font, background, dsb tetap sama */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  background: #f4f4f4;
+  color: #333;
+}
+
+/* =============== Header & Navigation =============== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing);
+  background: #fff;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: bold;
+  padding: 0.5rem;
+  transition: color 0.3s;
+}
+/* lama*/
+nav ul li a:hover {
+  color: #005fa3;
+}
+/* =============== Global Search =============== */
+#global-search-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: var(--spacing) 0;
+}
+#global-search-results {
+  list-style: none;
+  max-height: 40vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing);
+  padding: 0.5rem;
+}
+#global-search-results li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+#global-search-results li:last-child {
+  border-bottom: none;
+}
+#global-search-results li img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 0.5rem;
+}
+/* =============== Product Grid =============== */
+.products h2 {
+  text-align: center;
+  margin: var(--spacing) 0;
+  font-size: 1.75rem;
+}
+/*Tiles view untuk homepage*/
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing);
+  padding: 0 var(--spacing);
+}
+.product {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  width: 120px;
+  text-align: center;
+  padding: var(--spacing);
+  transition: transform 0.3s ease;
+}
+.product:hover {
+  transform: translateY(-5px);
+}
+.product img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.product-info h3 {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+/* =============== Product Detail (kopi.html, mie.html) =============== */
+/* Tiles view untuk halaman detail */
+.product-detail .product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--spacing);
+}
+.product-detail h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin-bottom: var(--spacing);
+}
+.product-detail p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin-bottom: var(--spacing * 2);
+}
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing);
+  list-style: none;
+}
+.product-list li {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.product-list li button {
+  margin-top: auto;
+  width: 100%; /* kalau ingin tombol selebar kartu */
+}
+.product-list li:hover {
+  transform: translateY(-5px);
+}
+.product-list img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  margin-bottom: var(--spacing);
+}
+/* Perkecil ukuran gambar di product-detail */
+.product-detail .product-list li img {
+  width: 60px;        /* atur lebar sesuai keinginan */
+  height: 60px;       /* agar tetap kotak, atau height: auto; untuk rasio asli */
+  object-fit: contain;/* menjaga proporsi gambar */
+  margin: 0 auto 0.5rem; /* center dan beri jarak bawah */
+  display: block;     /* hilangkan whitespace */
+}
+/* Jika ingin versi lebih kecil pada smartphone */
+@media (max-width: 480px) {
+  .product-detail .product-list li img {
+    width: 40px;
+    height: 40px;
+  }
+}
+.product-list button {
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.product-list button:hover {
+  background: var(--primary-hover);
+}
+/* =============== Cart Section =============== */
+#cart {
+  position: fixed;
+  right: 0rem;
+  top: 30rem;
+  width: 400px;
+  max-height: 70vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing);
+  z-index: 1100;
+    /* Batasi tinggi keranjang agar tidak memenuhi layar penuh */
+  max-height: 60vh;
+  /* Aktifkan scrolling vertikal saat konten melebihi tinggi */
+  overflow-y: auto;
+  /* Smoothing scroll di iOS */
+  -webkit-overflow-scrolling: touch;
+}
+#cart h2 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing);
+  flex: none;
+}
+#cart-items {
+   flex: 1 1 auto;
+  overflow-y: auto;
+   margin: 0;
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--spacing);
+   list-style: none;
+}
+#cart-items li {
+  border-bottom: 1px solid #eee;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#cart-items li:last-child {
+  border-bottom: none;
+}
+#cart button {
+  width: 100%;
+  margin-top: var(--spacing);
+}
+#cart .cart-footer {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#cart button,
+.whatsapp-btn {
+  width: 100%;
+}
+/* Tombol-tombol footer */
+#whatsapp-order,
+#clear-cart {
+  flex: none;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+/* =============== WhatsApp Button =============== */
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.whatsapp-btn:hover {
+  background: #1ebe57;
+}
+.whatsapp-btn img {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+}
+/* =============== Modal =============== */
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+#modal.hidden {
+  display: none;
+}
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.modal-content {
+  position: relative;
+  background: var(--bg-card);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: var(--radius);
+  padding: var(--spacing);
+  box-shadow: var(--shadow-card);
+  z-index: 1001;
+}
+#close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+/* =============== Footer =============== */
+footer {
+  text-align: center;
+  padding: var(--spacing);
+  margin-top: var(--spacing * 2);
+  background: #fff;
+  border-top: 1px solid #eaeaea;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #357ab8;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav button:hover {
+  background: #285f8f;
+}
+/* =============== Spesifikasi =============== */
+.product-specs {
+  list-style: none;
+  padding: 0.75rem var(--spacing);
+  margin-top: var(--spacing);
+  flex-grow: 1;
+}
+
+.product-specs li {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+}
+
+.product-specs li + li {
+  margin-top: 0.5rem;
+}
+
+/* =============== Tombol Pesan =============== */
+.product-detail button {
+  margin: var(--spacing);
+  padding: 0.75rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button {
+  padding: 12px 20px;
+  background-color: #21b326;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+/* Glowing effect animation */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px 0 #4caf50;
+  }
+  50% {
+    box-shadow: 0 0 20px 10px #4caf50;
+  }
+  100% {
+    box-shadow: 0 0 5px 0 #4caf50;
+  }
+}
+
+button:hover {
+  background-color: #45a049;
+  animation: glow 1s infinite;
+}
+/* =============== Responsive Tweak =============== */
+@media (max-width: 480px) {
+  .product-detail {
+    padding: var(--spacing);
+  }
+  .product-detail button,
+  #whatsapp-order {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+/* Pastikan ini setelah aturan .product-list img yang ada */
+.product-list img {
+  width: 100%;            /* memenuhi lebar card */
+  aspect-ratio: 1 / 1;    /* kunci: membuat rasio 1:1 */
+  object-fit: cover;      /* crop & scale agar tetap terisi penuh */
+  display: block;         /* hilangkan spasi bawah img inline */
+}
+/* Global Styles */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+nav ul li a:hover {
+  color: #005fa3;
+}

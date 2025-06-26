@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Pop-up Demo</title>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">TOKO NANDA</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="https://maps.app.goo.gl/JZqZdQkZCdb7cBsx5" target="_blank" rel="noopener noreferrer">Find Me</a></li>
+      </ul>
+    </nav>
+  </header>
+<!-- Kotak search global -->
+<input
+  type="text"
+  id="global-search-input"
+  placeholder="Cari semua produk kopi…"
+  style="width: 100%; padding: 0.5rem; margin: 1rem 0;"
+/>
+
+<!-- Container untuk menampilkan hasil pencarian -->
+<ul id="global-search-results" style="list-style:none; padding:0;"></ul>
+     <!-- Products Section -->
+  <section class="products" id="products">
+    <h2>Produk Kami</h2>
+    <section class="product-grid">
+      <!-- Product Entries -->
+      <div class="product">
+          <img src="images/Kopi.png" data-page="kopi.html" alt="Kopi" />
+        <div class="product-info">
+        </div>
+      </div>
+      <!-- Product Entries -->
+      <div class="product">
+          <img src="images/Mie.png" data-page="mie.html" alt="Mie" />
+        <div class="product-info">
+        </div>
+      </div>
+      <!-- Other Product Entries below -->
+  </section>
+  <!-- Modal Structure -->
+  <div id="modal" class="hidden">
+    <div class="modal-content">
+      <button id="close-btn">×</button>
+      <div id="page-container"></div>
+    </div>
+    <div id="overlay"></div>
+  </div>
+   <!-- Wrapper untuk produk + keranjang -->
+  <div class="container">
+    <!-- Konten Produk/Pesan -->
+    <main class="main-content">
+      <!-- Hero, Slider, Products, dll -->
+      <section class="products" id="products">
+        …  
+      </section>
+    </main>
+    </div>
+ <!-- Cart Section -->
+<section id="cart">
+  <button id="whatsapp-order">Order via WhatsApp</button>
+  <button id="clear-cart">Bersihkan Keranjang</button>
+  <h2>Keranjang Kamu</h2>
+  <ul id="cart-items"></ul>
+</section>
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 Toko Nanda. All rights reserved.</p>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
